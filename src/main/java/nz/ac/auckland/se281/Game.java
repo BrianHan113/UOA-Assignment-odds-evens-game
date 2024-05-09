@@ -8,11 +8,13 @@ public class Game {
 
   private int currentRound = 0;
   private String playerName;
+  private Difficulty difficulty;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // the first element of options[0]; is the name of the player
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     this.playerName = options[0];
+    this.difficulty = difficulty;
   }
 
   public void play() {
