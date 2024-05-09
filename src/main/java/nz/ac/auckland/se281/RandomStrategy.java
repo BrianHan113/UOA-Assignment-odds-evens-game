@@ -4,6 +4,6 @@ public class RandomStrategy implements Strategy {
 
   @Override
   public int getNumFingers() {
-    return Utils.getRandomNumberRange(1, 5);
+    return Utils.getRandomNumberRange(0, 5);
   }
 }
