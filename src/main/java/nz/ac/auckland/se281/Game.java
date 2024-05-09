@@ -19,6 +19,10 @@ public class Game {
     currentRound++;
     MessageCli.START_ROUND.printMessage(Integer.toString(currentRound));
     MessageCli.ASK_INPUT.printMessage();
+
+    String fingersInput = Utils.scanner.nextLine();
+
+    MessageCli.PRINT_INFO_HAND.printMessage(playerName, fingersInput);
   }
 
   public void endGame() {}
