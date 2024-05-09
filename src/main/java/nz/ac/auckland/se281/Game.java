@@ -10,6 +10,8 @@ public class Game {
   private String playerName;
   private CPU cpu;
   private Choice choice;
+  private int numHumanEven = 0;
+  private int numHumanOdd = 0;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // the first element of options[0]; is the name of the player
@@ -33,10 +35,16 @@ public class Game {
     }
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, fingersInput);
 
-    int CPUfingers = cpu.getNumFingers();
-    MessageCli.PRINT_INFO_HAND.printMessage(cpu.getName(), Integer.toString(CPUfingers));
+    int CPUMove = cpu.play();
+    MessageCli.PRINT_INFO_HAND.printMessage(cpu.getName(), Integer.toString(CPUMove));
 
-    getResultOfRound(Integer.parseInt(fingersInput), CPUfingers);
+    getResultOfRound(Integer.parseInt(fingersInput), CPUMove);
+
+    if (Utils.isEven(Integer.parseInt(fingersInput))) {
+      numHumanEven++;
+    } else {
+      numHumanOdd++;
+    }
   }
 
   public void endGame() {}
@@ -45,7 +53,7 @@ public class Game {
 
   private void getResultOfRound(int playerFingers, int CPUfingers) {
     int sum = playerFingers + CPUfingers;
-    String outcome = sum % 2 == 0 ? "EVEN" : "ODD";
+    String outcome = Utils.isEven(sum) ? "EVEN" : "ODD";
     String winner;
     if (this.choice == Choice.EVEN) {
       winner = Utils.isEven(sum) ? playerName : cpu.getName();

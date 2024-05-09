@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class CPU {
+public abstract class CPU {
   protected Strategy strategy;
   private String name = "HAL-9000";
 
@@ -12,9 +12,7 @@ public class CPU {
     this.strategy = strategy;
   }
 
-  public int getNumFingers() {
-    return strategy.getNumFingers();
-  }
+  public abstract int play();
 
   public String getName() {
     return name;

@@ -8,8 +8,8 @@ public class CPUFactory {
     switch (difficulty) {
       case EASY:
         return new EasyCPU();
-        // case MEDIUM:
-        //   return new MediumCPU();
+      case MEDIUM:
+        return new MediumCPU();
         // case HARD:
         //   return new HardCPU();
       default:
