@@ -1,13 +1,17 @@
 package nz.ac.auckland.se281;
 
+import nz.ac.auckland.se281.Main.Choice;
+
 public class TopStrategy implements Strategy {
 
   private int numHumanEven;
   private int numHumanOdd;
+  private Choice winCondition;
 
-  public TopStrategy(int numHumanEven, int numHumanOdd) {
+  public TopStrategy(int numHumanEven, int numHumanOdd, Choice winCondition) {
     this.numHumanEven = numHumanEven;
     this.numHumanOdd = numHumanOdd;
+    this.winCondition = winCondition;
   }
 
   public void setNumHumanEven(int numHumanEven) {
@@ -20,7 +24,6 @@ public class TopStrategy implements Strategy {
 
   @Override
   public int getAction() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getNumFingers'");
+    return -1;
   }
 }

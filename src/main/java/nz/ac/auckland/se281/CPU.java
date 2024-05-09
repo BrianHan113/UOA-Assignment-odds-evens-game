@@ -6,11 +6,10 @@ public abstract class CPU {
   protected Strategy strategy;
   private String name = "HAL-9000";
   protected int numMoves;
-
+  protected Choice winCondition;
   // CPU has access to past human moves
   protected int numHumanEven;
   protected int numHumanOdd;
-  protected Choice winCondition;
 
   public CPU(Strategy strategy, Choice winCondition) {
     this.strategy = strategy;
