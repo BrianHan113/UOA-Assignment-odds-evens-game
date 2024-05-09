@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public abstract class CPU {
+public class CPU {
   protected Strategy strategy;
   private String name = "HAL-9000";
 
