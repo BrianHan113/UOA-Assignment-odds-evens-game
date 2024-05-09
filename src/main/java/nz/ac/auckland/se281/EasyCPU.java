@@ -1,9 +1,11 @@
 package nz.ac.auckland.se281;
 
+import nz.ac.auckland.se281.Main.Choice;
+
 public class EasyCPU extends CPU {
 
-  public EasyCPU() {
-    super(new RandomStrategy());
+  public EasyCPU(Choice winCondition) {
+    super(new RandomStrategy(), winCondition);
   }
 
   @Override

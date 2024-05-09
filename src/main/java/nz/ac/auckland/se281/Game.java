@@ -10,14 +10,12 @@ public class Game {
   private String playerName;
   private CPU cpu;
   private Choice choice;
-  private int numHumanEven = 0;
-  private int numHumanOdd = 0;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // the first element of options[0]; is the name of the player
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     this.playerName = options[0];
-    this.cpu = CPUFactory.createCPU(difficulty);
+    this.cpu = CPUFactory.createCPU(difficulty, choice);
     this.choice = choice;
   }
 
@@ -41,9 +39,9 @@ public class Game {
     getResultOfRound(Integer.parseInt(fingersInput), CPUMove);
 
     if (Utils.isEven(Integer.parseInt(fingersInput))) {
-      numHumanEven++;
+      cpu.incrementNumHumanEven();
     } else {
-      numHumanOdd++;
+      cpu.incrementNumHumanOdd();
     }
   }
 
