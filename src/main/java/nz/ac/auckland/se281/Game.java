@@ -21,7 +21,10 @@ public class Game {
     MessageCli.ASK_INPUT.printMessage();
 
     String fingersInput = Utils.scanner.nextLine();
-
+    while (Integer.parseInt(fingersInput) < 0 || Integer.parseInt(fingersInput) > 5) {
+      MessageCli.INVALID_INPUT.printMessage();
+      fingersInput = Utils.scanner.nextLine();
+    }
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, fingersInput);
   }
 
