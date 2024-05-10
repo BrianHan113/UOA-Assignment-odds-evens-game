@@ -7,9 +7,10 @@ public abstract class CPU {
   private String name = "HAL-9000";
   protected int numMoves;
   protected Choice winCondition;
-  // CPU has access to past human moves
+  // CPU has access to player statistics
   protected int numHumanEven;
   protected int numHumanOdd;
+  protected int numHumanWins;
 
   public CPU(Strategy strategy, Choice winCondition) {
     this.strategy = strategy;
@@ -17,6 +18,7 @@ public abstract class CPU {
     this.numHumanEven = 0;
     this.numHumanOdd = 0;
     this.winCondition = winCondition;
+    this.numHumanWins = 0;
   }
 
   public void setStrategy(Strategy strategy) {
@@ -35,5 +37,9 @@ public abstract class CPU {
 
   public void incrementNumHumanOdd() {
     numHumanOdd++;
+  }
+
+  public void incrementNumHumanWins() {
+    this.numHumanWins++;
   }
 }

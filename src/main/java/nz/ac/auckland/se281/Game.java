@@ -37,12 +37,16 @@ public class Game {
     int CPUMove = cpu.play();
     MessageCli.PRINT_INFO_HAND.printMessage(cpu.getName(), Integer.toString(CPUMove));
 
-    getResultOfRound(Integer.parseInt(fingersInput), CPUMove);
+    String winner = getWinnerOfRound(Integer.parseInt(fingersInput), CPUMove);
 
     if (Utils.isEven(Integer.parseInt(fingersInput))) {
       cpu.incrementNumHumanEven();
     } else {
       cpu.incrementNumHumanOdd();
+    }
+
+    if (winner.equals(playerName)) {
+      cpu.incrementNumHumanWins();
     }
   }
 
@@ -50,7 +54,7 @@ public class Game {
 
   public void showStats() {}
 
-  private void getResultOfRound(int playerFingers, int CPUfingers) {
+  private String getWinnerOfRound(int playerFingers, int CPUfingers) {
     int sum = playerFingers + CPUfingers;
     String outcome = Utils.isEven(sum) ? "EVEN" : "ODD";
     String winner;
@@ -61,5 +65,11 @@ public class Game {
     }
 
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), outcome, winner);
+
+    if (winner.equals(playerName)) {
+      return playerName;
+    } else {
+      return cpu.getName();
+    }
   }
 }
