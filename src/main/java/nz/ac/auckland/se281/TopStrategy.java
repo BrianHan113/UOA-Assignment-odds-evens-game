@@ -8,9 +8,7 @@ public class TopStrategy implements Strategy {
   private int numHumanOdd;
   private Choice winCondition;
 
-  public TopStrategy(int numHumanEven, int numHumanOdd, Choice winCondition) {
-    this.numHumanEven = numHumanEven;
-    this.numHumanOdd = numHumanOdd;
+  public TopStrategy(Choice winCondition) {
     this.winCondition = winCondition;
   }
 

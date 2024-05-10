@@ -16,10 +16,11 @@ public class MediumCPU extends CPU {
 
     // Done this way to avoid creating a new TopStrategy object every time play is called
     if (numMoves == 4) {
-      topStrategy = new TopStrategy(numHumanEven, numHumanOdd, winCondition);
+      topStrategy = new TopStrategy(winCondition);
       setStrategy(topStrategy);
     }
     if (numMoves > 3) {
+      // Keep feeding the top strategy the latest statistics
       topStrategy.setNumHumanEven(numHumanEven);
       topStrategy.setNumHumanOdd(numHumanOdd);
     }

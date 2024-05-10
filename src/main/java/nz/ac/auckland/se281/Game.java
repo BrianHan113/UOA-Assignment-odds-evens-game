@@ -45,9 +45,7 @@ public class Game {
       cpu.incrementNumHumanOdd();
     }
 
-    if (winner.equals(playerName)) {
-      cpu.incrementNumHumanWins();
-    }
+    cpu.setHumanWon(winner.equals(playerName));
   }
 
   public void endGame() {}

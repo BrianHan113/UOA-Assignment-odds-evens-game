@@ -11,6 +11,7 @@ public abstract class CPU {
   protected int numHumanEven;
   protected int numHumanOdd;
   protected int numHumanWins;
+  protected boolean humanWon;
 
   public CPU(Strategy strategy, Choice winCondition) {
     this.strategy = strategy;
@@ -41,5 +42,13 @@ public abstract class CPU {
 
   public void incrementNumHumanWins() {
     this.numHumanWins++;
+  }
+
+  public void setHumanWon(boolean humanWon) {
+    this.humanWon = humanWon;
+
+    if (humanWon) {
+      incrementNumHumanWins();
+    }
   }
 }
