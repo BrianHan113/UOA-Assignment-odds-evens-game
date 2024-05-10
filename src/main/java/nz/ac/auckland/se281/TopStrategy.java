@@ -24,6 +24,12 @@ public class TopStrategy implements Strategy {
 
   @Override
   public int getAction() {
-    return -1;
+    if (numHumanEven > numHumanOdd) {
+      return winCondition == Choice.EVEN ? Utils.getRandomEvenNumber() : Utils.getRandomOddNumber();
+    } else if (numHumanEven < numHumanOdd) {
+      return winCondition == Choice.EVEN ? Utils.getRandomOddNumber() : Utils.getRandomEvenNumber();
+    } else {
+      return Utils.getRandomNumberRange(0, 5);
+    }
   }
 }

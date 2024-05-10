@@ -6,7 +6,7 @@ import nz.ac.auckland.se281.Main.Difficulty;
 /** This class represents the Game is the main entry point. */
 public class Game {
 
-  private int currentRound = 0;
+  private int currentRound;
   private String playerName;
   private CPU cpu;
   private Choice choice;
@@ -17,6 +17,7 @@ public class Game {
     this.playerName = options[0];
     this.cpu = CPUFactory.createCPU(difficulty, choice);
     this.choice = choice;
+    this.currentRound = 0;
   }
 
   public void play() {
