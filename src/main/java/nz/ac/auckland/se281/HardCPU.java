@@ -20,7 +20,7 @@ public class HardCPU extends CPU {
       return strategy.getAction();
     }
 
-    // if cpu lost the last round, switch strategy
+    // For round 4 onwards, if cpu lost the last round, switch strategy
     if (humanWon) {
       switchStrategy();
     }

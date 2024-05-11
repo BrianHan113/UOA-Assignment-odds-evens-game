@@ -21,6 +21,12 @@ public class Game {
   }
 
   public void play() {
+
+    if (this.cpu == null) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+
     currentRound++;
     MessageCli.START_ROUND.printMessage(Integer.toString(currentRound));
     MessageCli.ASK_INPUT.printMessage();
