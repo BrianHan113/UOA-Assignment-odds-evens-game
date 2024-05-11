@@ -1,13 +1,11 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.auckland.se281.Main.Choice;
-
 public class MediumCPU extends CPU {
 
   private TopStrategy topStrategy;
 
-  public MediumCPU(Choice winCondition) {
-    super(new RandomStrategy(), winCondition);
+  public MediumCPU(Human human) {
+    super(new RandomStrategy(), human);
   }
 
   @Override
@@ -16,13 +14,8 @@ public class MediumCPU extends CPU {
 
     // Done this way to avoid creating a new TopStrategy object every time play is called
     if (numMoves == 4) {
-      topStrategy = new TopStrategy(winCondition);
+      topStrategy = new TopStrategy(human);
       setStrategy(topStrategy);
-    }
-    if (numMoves > 3) {
-      // Keep feeding the top strategy the latest statistics
-      topStrategy.setNumHumanEven(numHumanEven);
-      topStrategy.setNumHumanOdd(numHumanOdd);
     }
 
     return strategy.getAction();

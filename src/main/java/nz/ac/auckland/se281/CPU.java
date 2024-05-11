@@ -1,25 +1,20 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.auckland.se281.Main.Choice;
-
 public abstract class CPU {
   protected Strategy strategy;
   private String name = "HAL-9000";
   protected int numMoves;
-  protected Choice winCondition;
-  // CPU has access to player statistics
-  protected int numHumanEven;
-  protected int numHumanOdd;
-  protected int numHumanWins;
-  protected boolean humanWon;
+  protected int numWins;
+  protected boolean wonLastGame;
 
-  public CPU(Strategy strategy, Choice winCondition) {
+  // CPU needs reference to human so it can pass on information to the strategy
+  protected Human human;
+
+  public CPU(Strategy strategy, Human human) {
+    this.human = human;
     this.strategy = strategy;
     this.numMoves = 0;
-    this.numHumanEven = 0;
-    this.numHumanOdd = 0;
-    this.winCondition = winCondition;
-    this.numHumanWins = 0;
+    this.numWins = 0;
   }
 
   public void setStrategy(Strategy strategy) {
@@ -32,27 +27,15 @@ public abstract class CPU {
     return name;
   }
 
-  public void incrementNumHumanEven() {
-    numHumanEven++;
+  public void incrementNumWins() {
+    this.numWins++;
   }
 
-  public void incrementNumHumanOdd() {
-    numHumanOdd++;
+  public int getNumWins() {
+    return numWins;
   }
 
-  public void incrementNumHumanWins() {
-    this.numHumanWins++;
-  }
-
-  public void setHumanWon(boolean humanWon) {
-    this.humanWon = humanWon;
-
-    if (humanWon) {
-      incrementNumHumanWins();
-    }
-  }
-
-  public int getNumHumanWins() {
-    return numHumanWins;
+  public void setWonLastGame(boolean CPUWon) {
+    this.wonLastGame = CPUWon;
   }
 }

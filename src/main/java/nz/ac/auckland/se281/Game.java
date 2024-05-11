@@ -7,22 +7,17 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
 
   private int currentRound;
-  private String playerName;
   private CPU cpu;
-  private Choice choice;
-  private int numHumanWins;
-  private int numCPUWins;
   private boolean isGameRunning;
+  private Human human;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // the first element of options[0]; is the name of the player
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
-    this.playerName = options[0];
-    this.cpu = CPUFactory.createCPU(difficulty, choice);
-    this.choice = choice;
+    this.human = new Human(options[0], choice);
+    this.cpu = CPUFactory.createCPU(difficulty, this.human);
     this.currentRound = 0;
-    this.numCPUWins = 0;
-    this.numHumanWins = 0;
+
     this.isGameRunning = true;
   }
 
@@ -44,20 +39,26 @@ public class Game {
       MessageCli.INVALID_INPUT.printMessage();
       fingersInput = Utils.scanner.nextLine();
     }
-    MessageCli.PRINT_INFO_HAND.printMessage(playerName, fingersInput);
+    MessageCli.PRINT_INFO_HAND.printMessage(human.getName(), fingersInput);
+
+    if (Utils.isEven(Integer.parseInt(fingersInput))) {
+      human.incrementNumEvenHands();
+    } else {
+      human.incrementNumOddHands();
+    }
 
     int CPUMove = cpu.play();
     MessageCli.PRINT_INFO_HAND.printMessage(cpu.getName(), Integer.toString(CPUMove));
 
     String winner = getWinnerOfRound(Integer.parseInt(fingersInput), CPUMove);
 
-    if (Utils.isEven(Integer.parseInt(fingersInput))) {
-      cpu.incrementNumHumanEven();
+    if (winner.equals(human.getName())) {
+      human.incrementNumWins();
+      cpu.setWonLastGame(false);
     } else {
-      cpu.incrementNumHumanOdd();
+      cpu.setWonLastGame(true);
+      cpu.incrementNumWins();
     }
-
-    cpu.setHumanWon(winner.equals(playerName));
   }
 
   public void endGame() {
@@ -68,9 +69,9 @@ public class Game {
 
     showStats();
 
-    if (this.numHumanWins > this.numCPUWins) {
-      MessageCli.PRINT_END_GAME.printMessage(playerName);
-    } else if (this.numHumanWins < this.numCPUWins) {
+    if (human.getNumWins() > cpu.getNumWins()) {
+      MessageCli.PRINT_END_GAME.printMessage(human.getName());
+    } else if (human.getNumWins() < cpu.getNumWins()) {
       MessageCli.PRINT_END_GAME.printMessage(cpu.getName());
     } else {
       MessageCli.PRINT_END_GAME_TIE.printMessage();
@@ -85,29 +86,26 @@ public class Game {
       return;
     }
 
-    this.numHumanWins = cpu.getNumHumanWins();
-    this.numCPUWins = currentRound - this.numHumanWins;
-
     MessageCli.PRINT_PLAYER_WINS.printMessage(
-        playerName, Integer.toString(numHumanWins), Integer.toString(numCPUWins));
+        human.getName(), Integer.toString(human.getNumWins()), Integer.toString(cpu.getNumWins()));
     MessageCli.PRINT_PLAYER_WINS.printMessage(
-        cpu.getName(), Integer.toString(numCPUWins), Integer.toString(numHumanWins));
+        cpu.getName(), Integer.toString(cpu.getNumWins()), Integer.toString(human.getNumWins()));
   }
 
   private String getWinnerOfRound(int playerFingers, int CPUfingers) {
     int sum = playerFingers + CPUfingers;
     String outcome = Utils.isEven(sum) ? "EVEN" : "ODD";
     String winner;
-    if (this.choice == Choice.EVEN) {
-      winner = Utils.isEven(sum) ? playerName : cpu.getName();
+    if (human.getChoice() == Choice.EVEN) {
+      winner = Utils.isEven(sum) ? human.getName() : cpu.getName();
     } else {
-      winner = Utils.isOdd(sum) ? playerName : cpu.getName();
+      winner = Utils.isOdd(sum) ? human.getName() : cpu.getName();
     }
 
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), outcome, winner);
 
-    if (winner.equals(playerName)) {
-      return playerName;
+    if (winner.equals(human.getName())) {
+      return human.getName();
     } else {
       return cpu.getName();
     }
