@@ -51,4 +51,8 @@ public abstract class CPU {
       incrementNumHumanWins();
     }
   }
+
+  public int getNumHumanWins() {
+    return numHumanWins;
+  }
 }

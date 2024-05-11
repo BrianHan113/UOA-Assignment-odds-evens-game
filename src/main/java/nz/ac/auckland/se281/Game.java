@@ -22,8 +22,7 @@ public class Game {
 
   public void play() {
 
-    if (this.cpu == null) {
-      MessageCli.GAME_NOT_STARTED.printMessage();
+    if (!gameExists()) {
       return;
     }
 
@@ -54,9 +53,25 @@ public class Game {
     cpu.setHumanWon(winner.equals(playerName));
   }
 
-  public void endGame() {}
+  public void endGame() {
+    if (!gameExists()) {
+      return;
+    }
+  }
 
-  public void showStats() {}
+  public void showStats() {
+    if (!gameExists()) {
+      return;
+    }
+
+    int numHumanWins = cpu.getNumHumanWins();
+    int numCPUWins = currentRound - numHumanWins;
+
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        playerName, Integer.toString(numHumanWins), Integer.toString(numCPUWins));
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        cpu.getName(), Integer.toString(numCPUWins), Integer.toString(numHumanWins));
+  }
 
   private String getWinnerOfRound(int playerFingers, int CPUfingers) {
     int sum = playerFingers + CPUfingers;
@@ -75,5 +90,13 @@ public class Game {
     } else {
       return cpu.getName();
     }
+  }
+
+  private Boolean gameExists() {
+    if (this.cpu == null) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return false;
+    }
+    return true;
   }
 }
