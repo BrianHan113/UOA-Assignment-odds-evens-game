@@ -10,6 +10,9 @@ public class Game {
   private String playerName;
   private CPU cpu;
   private Choice choice;
+  private int numHumanWins;
+  private int numCPUWins;
+  private boolean isGameRunning;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // the first element of options[0]; is the name of the player
@@ -18,11 +21,15 @@ public class Game {
     this.cpu = CPUFactory.createCPU(difficulty, choice);
     this.choice = choice;
     this.currentRound = 0;
+    this.numCPUWins = 0;
+    this.numHumanWins = 0;
+    this.isGameRunning = true;
   }
 
   public void play() {
 
-    if (!gameExists()) {
+    if (!isGameRunning) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
 
@@ -54,18 +61,32 @@ public class Game {
   }
 
   public void endGame() {
-    if (!gameExists()) {
+    if (!isGameRunning) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
+
+    showStats();
+
+    if (this.numHumanWins > this.numCPUWins) {
+      MessageCli.PRINT_END_GAME.printMessage(playerName);
+    } else if (this.numHumanWins < this.numCPUWins) {
+      MessageCli.PRINT_END_GAME.printMessage(cpu.getName());
+    } else {
+      MessageCli.PRINT_END_GAME_TIE.printMessage();
+    }
+
+    this.isGameRunning = false;
   }
 
   public void showStats() {
-    if (!gameExists()) {
+    if (!isGameRunning) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
 
-    int numHumanWins = cpu.getNumHumanWins();
-    int numCPUWins = currentRound - numHumanWins;
+    this.numHumanWins = cpu.getNumHumanWins();
+    this.numCPUWins = currentRound - this.numHumanWins;
 
     MessageCli.PRINT_PLAYER_WINS.printMessage(
         playerName, Integer.toString(numHumanWins), Integer.toString(numCPUWins));
@@ -90,13 +111,5 @@ public class Game {
     } else {
       return cpu.getName();
     }
-  }
-
-  private Boolean gameExists() {
-    if (this.cpu == null) {
-      MessageCli.GAME_NOT_STARTED.printMessage();
-      return false;
-    }
-    return true;
   }
 }
