@@ -24,11 +24,11 @@ public abstract class Cpu {
     this.numWins = 0;
   }
 
+  public abstract int play();
+
   public void setStrategy(Strategy strategy) {
     this.strategy = strategy;
   }
-
-  public abstract int play();
 
   public String getName() {
     return name;

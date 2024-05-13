@@ -25,14 +25,19 @@ public class TopStrategy implements Strategy {
 
   @Override
   public int getAction() {
+    // If the human has thrown more even hands than odd hands, and the human needs an even to win,
+    // the CPU will throw an odd hand
     if (human.getNumEvenHands() > human.getNumOddHands()) {
       return human.getChoice() == Choice.EVEN
           ? Utils.getRandomOddNumber()
           : Utils.getRandomEvenNumber();
+      // If the human has thrown more odd hands than even hands, and the human needs an even to win,
+      // the CPU will throw an even hand
     } else if (human.getNumEvenHands() < human.getNumOddHands()) {
       return human.getChoice() == Choice.EVEN
           ? Utils.getRandomEvenNumber()
           : Utils.getRandomOddNumber();
+      // If the human has thrown equal number of even and odd hands, CPU will throw a random hand
     } else {
       return Utils.getRandomNumberRange(0, 5);
     }
