@@ -47,10 +47,10 @@ public class Game {
       human.incrementNumOddHands();
     }
 
-    int CPUMove = cpu.play();
-    MessageCli.PRINT_INFO_HAND.printMessage(cpu.getName(), Integer.toString(CPUMove));
+    int cpuMove = cpu.play();
+    MessageCli.PRINT_INFO_HAND.printMessage(cpu.getName(), Integer.toString(cpuMove));
 
-    String winner = getWinnerOfRound(Integer.parseInt(fingersInput), CPUMove);
+    String winner = getWinnerOfRound(Integer.parseInt(fingersInput), cpuMove);
 
     if (winner.equals(human.getName())) {
       human.incrementNumWins();
@@ -92,8 +92,8 @@ public class Game {
         cpu.getName(), Integer.toString(cpu.getNumWins()), Integer.toString(human.getNumWins()));
   }
 
-  private String getWinnerOfRound(int playerFingers, int CPUfingers) {
-    int sum = playerFingers + CPUfingers;
+  private String getWinnerOfRound(int playerFingers, int cpuFingers) {
+    int sum = playerFingers + cpuFingers;
     String outcome = Utils.isEven(sum) ? "EVEN" : "ODD";
     String winner;
     if (human.getChoice() == Choice.EVEN) {

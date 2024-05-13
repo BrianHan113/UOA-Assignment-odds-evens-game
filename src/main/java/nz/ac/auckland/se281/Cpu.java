@@ -35,7 +35,7 @@ public abstract class Cpu {
     return numWins;
   }
 
-  public void setWonLastGame(boolean CPUWon) {
-    this.wonLastGame = CPUWon;
+  public void setWonLastGame(boolean wonLastGame) {
+    this.wonLastGame = wonLastGame;
   }
 }
