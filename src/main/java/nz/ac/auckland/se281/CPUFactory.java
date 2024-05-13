@@ -6,7 +6,6 @@ public class CPUFactory {
 
   public static CPU createCPU(Difficulty difficulty, Human human) {
     switch (difficulty) {
-        // Make CPUs with the complement of the human choice
       case EASY:
         // Strictly speaking, the easy CPU doesn't need to know who the human is since it selects
         // moves completely randomly, but we pass it in anyways in case we wish to use a more

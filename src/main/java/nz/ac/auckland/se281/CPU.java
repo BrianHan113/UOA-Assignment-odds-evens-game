@@ -7,7 +7,7 @@ public abstract class CPU {
   protected int numWins;
   protected boolean wonLastGame;
 
-  // CPU needs reference to human so it can pass on information to the strategy
+  // CPU has reference to human so it can pass on information to the strategy if necessary
   protected Human human;
 
   public CPU(Strategy strategy, Human human) {
