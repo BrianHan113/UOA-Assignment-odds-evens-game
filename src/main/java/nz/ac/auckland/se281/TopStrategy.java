@@ -17,7 +17,7 @@ public class TopStrategy implements Strategy {
    * Constructor for the TopStrategy class. Initializes the top strategy with a human opponent. This
    * is so that the strategy can make predictions based on the human's past moves.
    *
-   * @param human
+   * @param human the human player
    */
   public TopStrategy(Human human) {
     this.human = human;

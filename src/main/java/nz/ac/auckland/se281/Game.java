@@ -14,9 +14,9 @@ public class Game {
   /**
    * Starts a new game with the given CPU difficulty, choice (Even or Odd), and player name.
    *
-   * @param difficulty
-   * @param choice
-   * @param options
+   * @param difficulty the difficulty level of the CPU
+   * @param choice the choice of the human player (Even or Odd)
+   * @param options an array of strings containing the player name as the first element
    */
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // the first element of options[0]; is the name of the player
@@ -124,8 +124,8 @@ public class Game {
    * Determines the winner of the round based on the number of fingers shown by the human player and
    * the computer player.
    *
-   * @param playerFingers
-   * @param cpuFingers
+   * @param playerFingers the number of fingers shown by the human player
+   * @param cpuFingers the number of fingers shown by the computer player
    * @return the name of the winner of the round
    */
   private String getWinnerOfRound(int playerFingers, int cpuFingers) {

@@ -17,8 +17,8 @@ public class Human {
   /**
    * Constructor for Human class, initializes the human player with a name and choice (Even or Odd).
    *
-   * @param name
-   * @param choice
+   * @param name the name of the human player
+   * @param choice the choice of the human player (Even or Odd)
    */
   public Human(String name, Choice choice) {
     this.name = name;

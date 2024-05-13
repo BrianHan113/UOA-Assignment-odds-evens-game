@@ -2,8 +2,16 @@ package nz.ac.auckland.se281;
 
 import nz.ac.auckland.se281.Main.Difficulty;
 
+/** Factory class for creating CPUs of different difficulties. */
 public class CpuFactory {
 
+  /**
+   * Creates a CPU of the specified difficulty level, with the human player as the opponent.
+   *
+   * @param difficulty the difficulty level of the CPU
+   * @param human the human player
+   * @return a CPU of the specified difficulty level
+   */
   public static Cpu createCpu(Difficulty difficulty, Human human) {
     switch (difficulty) {
       case EASY:

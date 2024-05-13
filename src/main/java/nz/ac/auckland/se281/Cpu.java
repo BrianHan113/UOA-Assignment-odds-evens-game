@@ -14,8 +14,8 @@ public abstract class Cpu {
   /**
    * Constructor for the CPU class. Initializes the CPU with a given strategy and human opponent.
    *
-   * @param strategy
-   * @param human
+   * @param strategy the strategy the CPU will use
+   * @param human the human player
    */
   public Cpu(Strategy strategy, Human human) {
     this.human = human;
