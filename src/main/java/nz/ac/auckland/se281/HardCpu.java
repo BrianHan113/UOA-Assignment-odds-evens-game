@@ -1,10 +1,10 @@
 package nz.ac.auckland.se281;
 
-public class HardCPU extends CPU {
+public class HardCpu extends Cpu {
 
   private TopStrategy topStrategy;
 
-  public HardCPU(Human human) {
+  public HardCpu(Human human) {
     super(new RandomStrategy(), human);
     topStrategy = new TopStrategy(human);
   }

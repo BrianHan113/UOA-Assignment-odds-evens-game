@@ -1,10 +1,10 @@
 package nz.ac.auckland.se281;
 
-public class MediumCPU extends CPU {
+public class MediumCpu extends Cpu {
 
   private TopStrategy topStrategy;
 
-  public MediumCPU(Human human) {
+  public MediumCpu(Human human) {
     super(new RandomStrategy(), human);
   }
 

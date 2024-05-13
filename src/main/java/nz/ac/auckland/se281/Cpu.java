@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public abstract class CPU {
+public abstract class Cpu {
   protected Strategy strategy;
   private String name = "HAL-9000";
   protected int numMoves;
@@ -10,7 +10,7 @@ public abstract class CPU {
   // CPU has reference to human so it can pass on information to the strategy if necessary
   protected Human human;
 
-  public CPU(Strategy strategy, Human human) {
+  public Cpu(Strategy strategy, Human human) {
     this.human = human;
     this.strategy = strategy;
     this.numMoves = 0;

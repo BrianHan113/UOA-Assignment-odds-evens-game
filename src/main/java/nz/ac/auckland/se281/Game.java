@@ -7,7 +7,7 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
 
   private int currentRound;
-  private CPU cpu;
+  private Cpu cpu;
   private boolean isGameRunning;
   private Human human;
 
@@ -15,7 +15,7 @@ public class Game {
     // the first element of options[0]; is the name of the player
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     this.human = new Human(options[0], choice);
-    this.cpu = CPUFactory.createCPU(difficulty, this.human);
+    this.cpu = CpuFactory.createCPU(difficulty, this.human);
     this.currentRound = 0;
 
     this.isGameRunning = true;

@@ -1,8 +1,8 @@
 package nz.ac.auckland.se281;
 
-public class EasyCPU extends CPU {
+public class EasyCpu extends Cpu {
 
-  public EasyCPU(Human human) {
+  public EasyCpu(Human human) {
     super(new RandomStrategy(), human);
   }
 
