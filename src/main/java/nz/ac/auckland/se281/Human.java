@@ -2,6 +2,10 @@ package nz.ac.auckland.se281;
 
 import nz.ac.auckland.se281.Main.Choice;
 
+/**
+ * Represents a human player in the game. Includes useful information about past moves, which the
+ * strategies can use
+ */
 public class Human {
 
   private String name;
@@ -10,6 +14,12 @@ public class Human {
   private int numEvenHands;
   private int numOddHands;
 
+  /**
+   * Constructor for Human class, initializes the human player with a name and choice (Even or Odd).
+   *
+   * @param name
+   * @param choice
+   */
   public Human(String name, Choice choice) {
     this.name = name;
     this.choice = choice;

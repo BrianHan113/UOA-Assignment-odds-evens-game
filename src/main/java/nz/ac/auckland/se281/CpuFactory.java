@@ -4,7 +4,7 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 public class CpuFactory {
 
-  public static Cpu createCPU(Difficulty difficulty, Human human) {
+  public static Cpu createCpu(Difficulty difficulty, Human human) {
     switch (difficulty) {
       case EASY:
         // Strictly speaking, the easy CPU doesn't need to know who the human is since it selects

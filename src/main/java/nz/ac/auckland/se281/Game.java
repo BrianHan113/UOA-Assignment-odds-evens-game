@@ -11,16 +11,30 @@ public class Game {
   private boolean isGameRunning;
   private Human human;
 
+  /**
+   * Starts a new game with the given CPU difficulty, choice (Even or Odd), and player name.
+   *
+   * @param difficulty
+   * @param choice
+   * @param options
+   */
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     // the first element of options[0]; is the name of the player
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     this.human = new Human(options[0], choice);
-    this.cpu = CpuFactory.createCPU(difficulty, this.human);
+    this.cpu = CpuFactory.createCpu(difficulty, this.human);
     this.currentRound = 0;
 
     this.isGameRunning = true;
   }
 
+  /**
+   * Plays a round of the game, prompts the human player to enter a number of fingers, generates the
+   * number of fingers played by the computer player, and determines the winner of the round.
+   *
+   * <p>If the game is not currently running, a message indicating that the game has not started
+   * will be printed, and the method will return without playing a round.
+   */
   public void play() {
 
     if (!isGameRunning) {
@@ -61,6 +75,13 @@ public class Game {
     }
   }
 
+  /**
+   * Ends the current game and displays the final results, including the number of wins/losses for
+   * the human player and the computer player.
+   *
+   * <p>If the game is not currently running, a message indicating that the game has not started
+   * will be printed, and the method will return without doing anything.
+   */
   public void endGame() {
     if (!isGameRunning) {
       MessageCli.GAME_NOT_STARTED.printMessage();
@@ -80,6 +101,13 @@ public class Game {
     this.isGameRunning = false;
   }
 
+  /**
+   * Displays the current game statistics, including the number of wins for the human player and the
+   * computer player.
+   *
+   * <p>If the game is not currently running, a message indicating that the game has not started
+   * will be printed, and the method will return without displaying any statistics.
+   */
   public void showStats() {
     if (!isGameRunning) {
       MessageCli.GAME_NOT_STARTED.printMessage();
@@ -92,6 +120,14 @@ public class Game {
         cpu.getName(), Integer.toString(cpu.getNumWins()), Integer.toString(human.getNumWins()));
   }
 
+  /**
+   * Determines the winner of the round based on the number of fingers shown by the human player and
+   * the computer player.
+   *
+   * @param playerFingers
+   * @param cpuFingers
+   * @return the name of the winner of the round
+   */
   private String getWinnerOfRound(int playerFingers, int cpuFingers) {
     int sum = playerFingers + cpuFingers;
     String outcome = Utils.isEven(sum) ? "EVEN" : "ODD";
