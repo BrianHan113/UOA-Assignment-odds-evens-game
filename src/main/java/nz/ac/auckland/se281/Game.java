@@ -57,16 +57,17 @@ public class Game {
     }
     MessageCli.PRINT_INFO_HAND.printMessage(human.getName(), fingersInput);
 
+    // Play the CPU move before updating human stats, since the CPU should only know previous human
+    // moves, not the current move (cheating)
+    int cpuMove = cpu.play();
+    MessageCli.PRINT_INFO_HAND.printMessage(cpu.getName(), Integer.toString(cpuMove));
+
     // Update the number of even and odd hands thrown by the human
     if (Utils.isEven(Integer.parseInt(fingersInput))) {
       human.incrementNumEvenHands();
     } else {
       human.incrementNumOddHands();
     }
-
-    // Play the CPU move
-    int cpuMove = cpu.play();
-    MessageCli.PRINT_INFO_HAND.printMessage(cpu.getName(), Integer.toString(cpuMove));
 
     // Determine the winner of the round and update relevant statistics
     String winner = getWinnerOfRound(Integer.parseInt(fingersInput), cpuMove);
